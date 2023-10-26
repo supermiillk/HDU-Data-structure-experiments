@@ -2,63 +2,20 @@
 #include <stdlib.h>
 #include"CycleLinkList.h"
 
-// ´´½¨Ò»¸ö´øÍ·½ÚµãµÄÑ­»·Á´±í£¬°üº¬ n ¸ö½áµã£¬Êı¾İ´Ó 1 µ½ n
-void CreateList(CycleLinkList *L, int n) {
-    int a[n];
-    *L = (LNode *)malloc(sizeof(LNode));
-    if (!*L) {
-        exit(1);
-    }
-    (*L)->data = n;
-    (*L)->next = *L;
-    printf("ÇëÊäÈëÁ´±í");
-    for (int i = 0; i < n; i++){
-        scanf("%d",&a[i]);
-    }
-    
-    LNode *current = *L;
-
-    for (int i = 1; i <= n; i++) {
-        LNode *newNode = (LNode *)malloc(sizeof(LNode));
-        if (!newNode) {
-            exit(1);
-        }
-        newNode->data = a[i-1];
-        newNode->next = current->next;
-        current->next = newNode;
-        current = newNode;
-    }
-}
-
-
-
-// ¾ÍµØÄæÖÃÁ´±í
-void ReverseList(CycleLinkList *L) {
-    LNode *pre = (*L)->next;
-    LNode *current = pre->next;
-
-    while (current != *L) {
-        pre->next = current->next;
-        current->next = (*L)->next;
-        (*L)->next = current;
-        current = pre->next;
-    }
-}
-
 int main() {
     CycleLinkList L;
-    int n;  // ¼ÙÉèÓĞ 6 ¸ö½áµã
-    printf("ÇëÊäÈëÁ´±í³¤¶È");
+    int n;  // å‡è®¾æœ‰ 6 ä¸ªç»“ç‚¹
+    printf("è¯·è¾“å…¥é“¾è¡¨é•¿åº¦");
     scanf("%d",&n);
 
     InitList(&L);
-    CreateList(&L, n);
+    CreateList(&L,n);
 
-    printf("³õÊ¼Á´±í£º");
+    printf("åˆå§‹é“¾è¡¨ï¼š");
     PrintList(L);
 
     ReverseList(&L);
-    printf("ÄæÖÃºóµÄÁ´±í£º");
+    printf("é€†ç½®åçš„é“¾è¡¨ï¼š");
     PrintList(L);
     return 0;
 }

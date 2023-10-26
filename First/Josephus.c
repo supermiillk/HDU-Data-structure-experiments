@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"CycleLinkList.h"
 
-void CreateList(CycleLinkList *L, int n) {
+void CreateList1(CycleLinkList *L, int n) {
     (*L)->data=1;
     LNode *current = *L;
     for (int i = 2; i <= n; i++) {
@@ -37,16 +37,13 @@ void Josephus(CycleLinkList L, int m) {
 
 int main() {
     int n, m;
-    printf("请输入总人数 n：");
+    printf("请输入人数n \n");
     scanf("%d", &n);
-    printf("请输入报数间隔 m：");
+    printf("请输入间隔m \n");
     scanf("%d", &m);
     CycleLinkList L;
     InitList(&L);
-    CreateList(&L,n);
-    int a;
-    GetElem(L,1,&a);
-    printf("%d/n",a);
+    CreateList1(&L,n);
     Josephus(L, m);
     DestroyList(&L);
     return 0;

@@ -49,8 +49,8 @@ int ListLength(CycleLinkList L){
 
 void GetElem(CycleLinkList L,int i,ElemType *e){
     if (L == NULL || i <= 0) {
-        printf("è¶…å‡ºé“¾è¡¨é•¿åº¦");
-        exit(1); // å¤±è´¥ï¼Œé“¾è¡¨ä¸ºç©ºæˆ–ç´¢å¼•æ— æ•ˆ
+        printf("³¬³öÁ´±í³¤¶È");
+        exit(1); // Ê§°Ü£¬Á´±íÎª¿Õ»òË÷ÒıÎŞĞ§
     }
 
     CycleLinkList current = L->next;
@@ -61,19 +61,19 @@ void GetElem(CycleLinkList L,int i,ElemType *e){
         count++;
 
         if (current == L) {
-            printf("è¶…å‡ºé“¾è¡¨é•¿åº¦");
-            exit(1); // å¤±è´¥ï¼Œç´¢å¼•è¶…å‡ºé“¾è¡¨é•¿åº¦
+            printf("³¬³öÁ´±í³¤¶È");
+            exit(1); // Ê§°Ü£¬Ë÷Òı³¬³öÁ´±í³¤¶È
         }
     }
 
-    *e = current->data; // æˆåŠŸï¼Œe ä¸­å­˜å‚¨äº†ç¬¬ i ä¸ªä½ç½®çš„å€¼
+    *e = current->data; // ³É¹¦£¬e ÖĞ´æ´¢ÁËµÚ i ¸öÎ»ÖÃµÄÖµ
 }
 
 
 void ListInsert(CycleLinkList *L,int i,ElemType e){
    LNode *newNode = (LNode *)malloc(sizeof(LNode));
     if (newNode == NULL) {
-        // å†…å­˜åˆ†é…å¤±è´¥å¤„ç†
+        // ÄÚ´æ·ÖÅäÊ§°Ü´¦Àí
         exit(1);
     }
     newNode->data = e;
@@ -89,13 +89,13 @@ void ListInsert(CycleLinkList *L,int i,ElemType e){
     newNode->next = current->next;
     current->next = newNode;
     if (i == 1) {
-        *L = newNode; // è‹¥åœ¨ç¬¬ä¸€ä¸ªä½ç½®æ’å…¥ï¼Œéœ€è¦æ›´æ–°å¤´æŒ‡é’ˆ
+        *L = newNode; // ÈôÔÚµÚÒ»¸öÎ»ÖÃ²åÈë£¬ĞèÒª¸üĞÂÍ·Ö¸Õë
     }
 }
 
 void ListDelete(CycleLinkList *L,int i,ElemType *e){
     if (*L == NULL || i < 1) {
-        // æ— æ•ˆçš„åˆ é™¤ä½ç½®
+        // ÎŞĞ§µÄÉ¾³ıÎ»ÖÃ
         return;
     }
 
@@ -112,7 +112,7 @@ void ListDelete(CycleLinkList *L,int i,ElemType *e){
     current->next = deletedNode->next;
 
     if (i == 1) {
-        *L = deletedNode->next; // å¦‚æœåˆ é™¤çš„æ˜¯ç¬¬ä¸€ä¸ªå…ƒç´ ï¼Œéœ€è¦æ›´æ–°å¤´æŒ‡é’ˆ
+        *L = deletedNode->next; // Èç¹ûÉ¾³ıµÄÊÇµÚÒ»¸öÔªËØ£¬ĞèÒª¸üĞÂÍ·Ö¸Õë
     }
 
     free(deletedNode);
@@ -125,4 +125,64 @@ void PrintList(CycleLinkList L) {
         current = current->next;
     }
     printf("\n");
+}
+
+void AppendElement(CycleLinkList *L, ElemType e) {
+    LNode *newNode = (LNode *)malloc(sizeof(LNode));
+    if (!newNode) {
+        exit(1);
+    }
+    newNode->data = e;
+
+    if (*L == NULL) {
+        *L = newNode;
+        newNode->next = newNode;  // Èç¹ûÁ´±íÎª¿Õ£¬Ö¸Ïò×ÔÉíĞÎ³ÉÑ­»·
+    } else {
+        LNode *current = (*L)->next;  // ¶¨Î»µ½µÚÒ»¸ö½Úµã
+        while (current->next != *L) {
+            current = current->next;
+        }
+        newNode->next = current->next;
+        current->next = newNode;
+    }
+}
+
+void ReverseList(CycleLinkList *L) {
+    LNode *pre = (*L)->next;
+    LNode *current = pre->next;
+
+    while (current != *L) {
+        pre->next = current->next;
+        current->next = (*L)->next;
+        (*L)->next = current;
+        current = pre->next;
+    }
+}
+
+// ´´½¨Ò»¸ö´øÍ·½ÚµãµÄÑ­»·Á´±í£¬°üº¬ n ¸ö½áµã£¬Êı¾İ´Ó 1 µ½ n
+void CreateList(CycleLinkList *L, int n) {
+    int a[n];
+    *L = (LNode *)malloc(sizeof(LNode));
+    if (!*L) {
+        exit(1);
+    }
+    (*L)->data = n;
+    (*L)->next = *L;
+    printf("ÇëÊäÈëÁ´±í");
+    for (int i = 0; i < n; i++){
+        scanf("%d",&a[i]);
+    }
+    
+    LNode *current = (*L);
+
+    for (int i = 1; i <= n; i++) {
+        LNode *newNode = (LNode *)malloc(sizeof(LNode));
+        if (!newNode) {
+            exit(1);
+        }
+        newNode->data = a[i-1];
+        newNode->next = current->next;
+        current->next = newNode;
+        current = newNode;
+    }
 }

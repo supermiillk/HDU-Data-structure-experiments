@@ -5,8 +5,8 @@ typedef int ElemType;
 
 typedef struct LNode
 {
-	ElemType data; //æ•°æ®åŸŸ
-	struct LNode *next; //æŒ‡é’ˆåŸŸ
+	ElemType data; //Êı¾İÓò
+	struct LNode *next; //Ö¸ÕëÓò
 }LNode,*CycleLinkList;
 
 
@@ -19,6 +19,10 @@ int ListLength(CycleLinkList L);
 void ListInsert(CycleLinkList *L,int i,ElemType e);
 void ListDelete(CycleLinkList *L,int i,ElemType *e);
 void PrintList(CycleLinkList L);
+void AppendElement(CycleLinkList *L, ElemType e);
+void ReverseList(CycleLinkList *L);
+void CreateList(CycleLinkList *L, int n);
+
 
 #endif
 
