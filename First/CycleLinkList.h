@@ -13,14 +13,12 @@ typedef struct LNode
 void InitList(CycleLinkList *L);
 void DestroyList(CycleLinkList *L);
 void ClearList(CycleLinkList *L);
-void ListEmpty(CycleLinkList *L);
-void ListLength(CycleLinkList *L);
-void GetElem(CycleLinkList *L);
-void LocateElem(CycleLinkList *L);
-void PriorElem(CycleLinkList *L);
-void NextElem(CycleLinkList *L);
-void ListInsert(CycleLinkList *L);
-void ListDelete(CycleLinkList *L);
-void ListTraverse(CycleLinkList *L);
+void GetElem(CycleLinkList L,int i,ElemType *e);
+int ListEmpty(CycleLinkList L);
+int ListLength(CycleLinkList L);
+void ListInsert(CycleLinkList *L,int i,ElemType e);
+void ListDelete(CycleLinkList *L,int i,ElemType *e);
+void PrintList(CycleLinkList L);
 
 #endif
+
