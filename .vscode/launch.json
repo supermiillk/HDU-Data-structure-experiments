@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Study/HDU-Data-structure-experiments/Second/ParkingQuestion",
-      "program": "d:/Study/HDU-Data-structure-experiments/Second/ParkingQuestion/build/Debug/outDebug",
+      "cwd": "d:/Study/HDU-Data-structure-experiments/栈与队列/ParkingQuestion",
+      "program": "d:/Study/HDU-Data-structure-experiments/栈与队列/ParkingQuestion/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
